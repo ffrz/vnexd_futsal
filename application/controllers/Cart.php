@@ -68,8 +68,8 @@ class Cart extends CI_Controller
                     $data2 = array(
                         'trans_id' => $id_trans,
                         'lapangan_id' => $id,
-                        'harga_jual' => $row->harga,
-                        'total' => $row->harga,
+                        'harga_jual' => 0,
+                        'total' => 0,
                     );
 
                     $this->Cart_model->insert_detail($data2);
