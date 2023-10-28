@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Atur ulang URL ke index.php jika file atau direktori fisik tidak ada
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Atur ulang URL untuk memanggil index.php dengan tambahan URI
+  RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
