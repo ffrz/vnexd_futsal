@@ -309,6 +309,8 @@ ini_set('error_reporting', E_ALL & ~E_DEPRECATED);
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+	require_once __DIR__ . '/vendor/autoload.php';
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

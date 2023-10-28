@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+use Spipu\Html2Pdf\Html2Pdf;
 
 class Cart extends CI_Controller
 {
@@ -216,7 +217,7 @@ class Cart extends CI_Controller
             $html = '<title style="font-family: freeserif">' . nl2br($html) . '</title>';
             ob_end_clean();
 
-            $pdf = new HTML2PDF('P', 'A4', 'en', true, 'UTF-8', array(10, 0, 10, 0));
+            $pdf = new Html2Pdf('P', 'A4', 'en', true, 'UTF-8', array(10, 0, 10, 0));
             $pdf->setDefaultFont('Arial');
             $pdf->setTestTdInOnePage(false);
             $pdf->WriteHTML($html);
