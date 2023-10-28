@@ -39,7 +39,7 @@
 									foreach ($cart_data as $cart) { ?>
 										<tr>
 											<td style="text-align:left"><?php echo $cart->nama_lapangan ?></td>
-											<td style="text-align:center" class="harga_per_jam"><?php echo number_format($cart->harga) ?></td>
+											<td style="text-align:center" class="harga_per_jam">0</td>
 											<td style="text-align:center">
 												<?php echo form_input($tanggal) ?>
 												<input type="hidden" name="harga_jual[]" value="<?php echo $cart->harga ?>">
@@ -131,6 +131,33 @@
 		<link href="<?php echo base_url('assets/plugins/') ?>datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
 		<script src="<?php echo base_url('assets/plugins/') ?>datepicker/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript">
+			let prices = {
+				1: 120000,
+				2: 120000,
+				3: 120000,
+				4: 120000,
+				5: 120000,
+				6: 80000,
+				7: 80000,
+				8: 80000,
+				9: 80000,
+				10: 80000,
+				11: 80000,
+				12: 80000,
+				13: 100000,
+				14: 100000,
+				15: 100000,
+				16: 100000,
+				17: 120000,
+				16: 120000,
+				19: 120000,
+				20: 120000,
+				21: 120000,
+				22: 120000,
+				23: 120000,
+				24: 120000,
+			}
+
 			const numberWithCommas = (x) => {
 				var parts = x.toString().split(".");
 				parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -212,10 +239,17 @@
 					subtotal_el = durasi_el.parent().parent().find(".subtotal");
 
 					if (jam_mulai_el.val() != "") {
+						let jam_mulai = parseInt(jam_mulai_el.val().split(':')[0]);
 						jam_selesai = moment("01-01-2018 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss").add(parseInt(durasi), 'hours').format('HH:mm:ss');
 						jam_selesai_el.html(jam_selesai);
+						let harga = prices[jam_mulai];
+						harga_per_jam_el.innerHTML = prices[jam_mulai];
+						harga_per_jam_el.html(numberWithCommas(harga));
+						
+						// TODO: ambil harga untuk masing-masing durasi
 
-						harga_per_jam = harga_per_jam_el.html().replace(/,/g, '');
+						// harga_per_jam = harga_per_jam_el.html().replace(/,/g, '');
+						harga_per_jam = harga;
 						harga_per_jam_int = parseInt(harga_per_jam);
 
 						subtotal_el.html(numberWithCommas(harga_per_jam_int * parseInt(durasi)));
