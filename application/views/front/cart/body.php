@@ -51,7 +51,7 @@
 													<img src="<?php echo base_url(); ?>assets/template/frontend/img/loading.gif" style="display:inline;" />&nbsp;memuat data ...</span>
 											</td>
 											<td style="text-align:center">
-												<input type="number" name="durasi[]" class="durasi" min="1">
+												<input type="number" name="durasi[]" class="durasi" min="1" max="1" step="1">
 											</td>
 											<td style="text-align:center" class="jam_selesai"></td>
 											<td style="text-align:center" class="subtotal"></td>
