@@ -33,13 +33,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i <= 23; $i++) : ?>
+                                        <?php foreach ($prices as $item) : ?>
                                             <tr>
-                                                <td><?= str_pad($i, 2, '0', STR_PAD_LEFT); ?>:00</td>
-                                                <td><input type="number" min="0" max="9999999" step="5000" name="prices[<?= $i ?>]" value="<?= $prices[$i]->price ?>"></td>
+                                                <td><?= str_pad($item->hour, 2, '0', STR_PAD_LEFT); ?>:00</td>
+                                                <td><input type="number" min="0" max="9999999" step="5000" name="prices[<?= $item->hour ?>]" value="<?= $item->price ?>"></td>
                                                 <td></td>
                                             </tr>
-                                        <?php endfor ?>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

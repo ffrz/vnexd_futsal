@@ -20,6 +20,7 @@ class Cart extends CI_Controller
         $this->data['total_cart_navbar'] = $this->Cart_model->total_cart_navbar();
 
         $this->load->helper('tgl_indo');
+        $this->load->helper('dd');
 
         if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert">Silahkan login dulu</div>');
@@ -147,6 +148,7 @@ class Cart extends CI_Controller
     public function checkout()
     {
         $count = count($this->input->post('lapangan'));
+        
         for ($i = 0; $i < $count; $i++) {
             $data_detail[$i] = array(
                 'id_transdet' => $this->input->post('id_transdet[' . $i . ']'),

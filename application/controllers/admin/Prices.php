@@ -11,7 +11,7 @@ class Prices extends Base
   {
     parent::__construct();
     $this->load->model('Price_model');
-    $this->data['module'] = 'Prices';
+    $this->data['module'] = 'Tarif Sewa';
   }
 
   public function index()

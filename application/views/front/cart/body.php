@@ -25,7 +25,6 @@
 								<thead>
 									<tr>
 										<th style="text-align: center">Lapangan</th>
-										<th style="text-align: center">Harga</th>
 										<th style="text-align: center">Tanggal</th>
 										<th style="text-align: center">Jam Mulai</th>
 										<th style="text-align: center">Durasi</th>
@@ -39,10 +38,9 @@
 									foreach ($cart_data as $cart) { ?>
 										<tr>
 											<td style="text-align:left"><?php echo $cart->nama_lapangan ?></td>
-											<td style="text-align:center" class="harga_per_jam">0</td>
 											<td style="text-align:center">
 												<?php echo form_input($tanggal) ?>
-												<input type="hidden" name="harga_jual[]" value="<?php echo $cart->harga ?>">
+												<input class="harga_jual" type="hidden" name="harga_jual[]" value="0">
 												<input type="hidden" name="lapangan[]" value="<?php echo $cart->lapangan_id ?>">
 												<input type="hidden" name="id_transdet[]" value="<?php echo $cart->id_transdet ?>">
 												<input type="hidden" value="<?php echo $cart->lapangan_id; ?>" class="lapangan_id">
@@ -158,7 +156,7 @@
 					jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
 					loading_container_el = tanggal_el.parent().parent().find(".loading_container");
 					lapangan_id_el = tanggal_el.parent().parent().find(".lapangan_id");
-
+					
 					jam_mulai_el.hide();
 					loading_container_el.show();
 
@@ -180,7 +178,7 @@
 								count++;
 							});
 
-							durasi_el.val(0);
+							durasi_el.val( );
 							jam_selesai_el.html("");
 
 							if (count == 0) {
@@ -213,14 +211,18 @@
 
 					harga_per_jam_el = durasi_el.parent().parent().find(".harga_per_jam");
 					subtotal_el = durasi_el.parent().parent().find(".subtotal");
+					harga_jual_el = tanggal_el.parent().parent().find(".harga_jual");
 
 					if (jam_mulai_el.val() != "") {
 						let jam_mulai = parseInt(jam_mulai_el.val().split(':')[0]);
 						jam_selesai = moment("01-01-2018 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss").add(parseInt(durasi), 'hours').format('HH:mm:ss');
 						jam_selesai_el.html(jam_selesai);
-						let harga = prices[jam_mulai]['price'];
+						let harga = prices[prices.findIndex(function(price) {
+							return price.hour == jam_mulai;
+						})].price;
 						harga_per_jam_el.innerHTML = prices[jam_mulai];
 						harga_per_jam_el.html(numberWithCommas(harga));
+						harga_jual_el.val(harga);
 						
 						// TODO: ambil harga untuk masing-masing durasi
 

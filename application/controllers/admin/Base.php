@@ -16,6 +16,8 @@ class Base extends CI_Controller
         } elseif (!$this->ion_auth->is_superadmin() && !$this->ion_auth->is_admin()) {
             redirect(base_url());
         }
+
+        $this->load->helper('dd');
     }
 
     public function flashMessage($type, $message)

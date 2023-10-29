@@ -3,7 +3,7 @@
     <span class="logo-mini"><b>VINEX-D</b></span>
     <span class="logo-lg"><b>VINEX-D</b></span>
   </a>
-  <nav class="navbar navbar-static-top" role="navigation">
+  <nav class="navbar navbar-fixed-top" role="navigation">
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
