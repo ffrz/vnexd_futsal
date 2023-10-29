@@ -29,7 +29,10 @@ class Cart extends CI_Controller
 
     public function index()
     {
+        $this->load->model('Price_model');
+
         $this->data['title'] = 'Keranjang Belanja';
+        $this->data['prices'] = $this->Price_model->get_all();
 
         $this->data['tanggal'] = array(
             'name' => 'tanggal[]',
