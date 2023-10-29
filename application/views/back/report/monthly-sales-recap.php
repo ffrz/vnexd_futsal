@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
     .table,
@@ -9,7 +10,10 @@
       border: 1px solid #000;
     }
 
-    td, th { padding: 1px 5px; }
+    td,
+    th {
+      padding: 1px 5px;
+    }
 
     .text-right {
       text-align: right;
@@ -45,11 +49,16 @@
         </tr>
       </thead>
       <tbody>
+        <?php if (count($items) == 0) : ?>
+          <tr>
+            <td colspan="6" class="text-center">Tidak ada rekaman.</td>
+          </tr>
+        <?php endif ?>
         <?php $grandTotal = 0 ?>
         <?php $totalTransaction = 0 ?>
         <?php $totalDuration = 0 ?>
         <?php $no = 1; ?>
-        <?php foreach ($items as $item): ?>
+        <?php foreach ($items as $item) : ?>
           <tr>
             <td class="text-center"><?= $no++ ?></td>
             <td class="text-center"><?= IntlDateFormatter::formatObject(new DateTime($item->date), 'd') ?></td>

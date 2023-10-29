@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
     .table,
@@ -9,7 +10,10 @@
       border: 1px solid #000;
     }
 
-    td, th { padding: 1px 5px; }
+    td,
+    th {
+      padding: 1px 5px;
+    }
 
     .text-right {
       text-align: right;
@@ -44,12 +48,15 @@
         </tr>
       </thead>
       <tbody>
+        <?php if (empty($items)) : ?>
+          <tr><td colspan="5" class="text-center">Tidak ada rekaman.</td></tr>
+        <?php endif ?>
         <?php $grandTotal = 0 ?>
         <?php $totalTransaction = 0 ?>
         <?php $totalDuration = 0 ?>
-        <?php foreach ($items as $num => $item): ?>
+        <?php foreach ($items as $num => $item) : ?>
           <tr>
-            <td class="text-center"><?= $num+1 ?></td>
+            <td class="text-center"><?= $num + 1 ?></td>
             <td class=""><?= $item->username ?></td>
             <td class="text-right"><?= number_format($item->transactionCount, 0, ',', '.') ?></td>
             <td class="text-right"><?= number_format($item->duration, 0, ',', '.') ?></td>
